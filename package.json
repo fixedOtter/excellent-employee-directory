@@ -1,0 +1,23 @@
+{
+  "name": "excellent-employee-directory",
+  "version": "1.0.0",
+  "description": "this is an excellent employee directory",
+  "main": "server.js",
+  "scripts": {
+    "test": "npm test",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fixedOtter/excellent-employee-directory.git"
+  },
+  "keywords": [
+    "sql"
+  ],
+  "author": "fixedOtter",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/fixedOtter/excellent-employee-directory/issues"
+  },
+  "homepage": "https://github.com/fixedOtter/excellent-employee-directory#readme"
+}
