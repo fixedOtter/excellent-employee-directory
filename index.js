@@ -8,6 +8,12 @@ const fs = require('fs');
 const path = require('path');
 const cTable = require('console.table');
 
+/* local imports */
+const db = require('./db/connection.js');
+const viewDatabase = require('./lib/view-database');
+const modifyDatabase = require('./lib/modify-database');
+const delFromDatabase = require('./lib/delfrom-database');
+
 /* declarations */
 const whichToDo = [
   {
@@ -51,10 +57,22 @@ const getUserInput = () => {
     console.log(`questions ran, and here are answers:`);
     console.log(JSON.stringify(answers, null, '  '));
 
+    db.authenticate()
+    .then(res => {
+      console.log(`Connected`);
+      console.log(res);
+    })
+    .catch(err => {
+      console.error(err);
+    })
+
+
+
     // do logic pertaining to each option
     switch (answers.userMainChoice) {
       case 'View Database Data':
-        
+
+        viewDatabase.viewHandler(answers.viewOption)
         break;
       case 'Add / Modify Database':
       
@@ -73,4 +91,4 @@ const getUserInput = () => {
   })
 }
 
-getUserInput();
+// getUserInput();

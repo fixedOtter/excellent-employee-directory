@@ -4,11 +4,20 @@
 
 const mysql = require('mysql2/promise');
 
-const dbPromise = mysql.createPool({
+const { Sequelize } = require('sequelize');
+
+/* const dbPromise = mysql.createPool({
   host: 'localhost',
   database: 'employee_dir',
   user: 'root',
   password: 'GarfMode69420N$4'
-}).promise();
+}).promise(); */
 
-module.exports = dbPromise;
+
+const sequelize = new Sequelize('employee_dir', 'root', 'GarfMode69420N$4', {
+  host: 'localhost',
+  dialect: 'mysql'
+});
+
+module.exports = sequelize;
+// module.exports = dbPromise;
