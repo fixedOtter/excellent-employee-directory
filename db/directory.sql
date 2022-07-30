@@ -2,17 +2,20 @@
 -- made by fixedOtter on 29.7.2022
 --
 
+-- first declaring the database we will use
 CREATE DATABASE employee_dir;
 
+-- telling sql what datbase i'm talking to
 USE employee_dir;
 
-CREATE TABLE department(
+-- creating department grandparent table
+CREATE TABLE IF NOT EXISTS department(
   department_id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(30) NOT NULL,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  name VARCHAR(30) NOT NULL
 );
 
-CREATE TABLE occupation(
+-- creating occupation child / parent table
+CREATE TABLE IF NOT EXISTS occupation(
   occupation_id INT AUTO_INCREMENT PRIMARY KEY,
   title VARCHAR(30) NOT NULL,
   salary DECIMAL,
@@ -20,7 +23,8 @@ CREATE TABLE occupation(
   FOREIGN KEY (department_id) REFERENCES department(department_id)
 );
 
-CREATE TABLE employee(
+-- creating grandchild table
+CREATE TABLE IF NOT EXISTS employee(
   id INT AUTO_INCREMENT PRIMARY KEY,
   first_name VARCHAR(30) NOT NULL,
   last_name VARCHAR(30),

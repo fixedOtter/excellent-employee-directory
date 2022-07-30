@@ -20,7 +20,7 @@ const whichToDo = [
     type: 'list',
     name: 'userMainChoice',
     message: 'What would you like to do?',
-    choices: ['View Database Data', 'Add / Modify Database', 'Delete from Database']
+    choices: ['View Database Data', 'Add / Modify Database', 'Delete from Database', 'Quit']
   },
   {
     type: 'list',
@@ -54,41 +54,30 @@ const whichToDo = [
 const getUserInput = () => {
   inquirer.prompt(whichToDo)
   .then((answers) => {
-    console.log(`questions ran, and here are answers:`);
-    console.log(JSON.stringify(answers, null, '  '));
-
-    db.authenticate()
-    .then(res => {
-      console.log(`Connected`);
-      console.log(res);
-    })
-    .catch(err => {
-      console.error(err);
-    })
-
-
-
     // do logic pertaining to each option
     switch (answers.userMainChoice) {
       case 'View Database Data':
-
-        viewDatabase.viewHandler(answers.viewOption)
+        viewDatabase.viewHandler(answers.viewOption);
         break;
       case 'Add / Modify Database':
-      
+        modifyDatabase.modifyHandler(answers.modifyOption);
         break;
       case 'Delete from Database':
-        
+        delFromDatabase.delHandler(answers.delOption);
         break;
-      
+      case 'Quit':
+        console.log('See ya next time!');
+        process.exit();
       default:
         break;
     }
-
+  })
+  .then(() => {
+    getUserInput();
   })
   .catch((err) => {
     console.error(err);
   })
 }
 
-// getUserInput();
+getUserInput();
