@@ -42,3 +42,15 @@ SELECT
     JOIN occupation occ
     ON occupation.occupation_id = employee.occupation_id
   GROUP BY occupation.title;
+
+
+-- this is the big chocola for joining the names of the employee and the manager
+-- HAVE TO use alias when joining table to itself
+SELECT
+  e.id,
+  e.first_name,
+  man.first_name AS manager
+FROM employee e
+  LEFT JOIN employee man
+    ON man.id = e.manager_id
+ORDER BY e.id;

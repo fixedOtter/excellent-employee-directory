@@ -13,8 +13,10 @@ const db = require('./db/connection.js');
 const viewDatabase = require('./lib/view-database');
 const modifyDatabase = require('./lib/modify-database');
 const delFromDatabase = require('./lib/delfrom-database');
+const { table } = require('console');
 
 /* declarations */
+let tableData;
 const whichToDo = [
   {
     type: 'list',
@@ -60,24 +62,24 @@ const getUserInput = () => {
         viewDatabase.viewHandler(answers.viewOption);
         break;
       case 'Add / Modify Database':
-        modifyDatabase.modifyHandler(answers.modifyOption);
+        tableData = modifyDatabase.modifyHandler(answers.modifyOption);
         break;
       case 'Delete from Database':
-        delFromDatabase.delHandler(answers.delOption);
+        tableData = delFromDatabase.delHandler(answers.delOption);
         break;
       case 'Quit':
         console.log('See ya next time!');
         process.exit();
       default:
         break;
-    }
+    };
+
   })
   .then(() => {
-    getUserInput();
   })
   .catch((err) => {
     console.error(err);
-  })
+  });
 }
 
 getUserInput();
