@@ -10,9 +10,8 @@ const cTable = require('console.table');
 
 /* local imports */
 const db = require('./db/connection.js');
-const viewDatabase = require('./lib/view-database');
-const modifyDatabase = require('./lib/modify-database');
-const delFromDatabase = require('./lib/delfrom-database');
+const config = require('./models/config');
+const input_handler = require('./lib/input-handler');
 
 /* declarations */
 const whichToDo = [
@@ -71,8 +70,7 @@ const getUserInput = () => {
     // do logic pertaining to each option
     switch (answers.userMainChoice) {
       case 'View Database Data':
-
-        viewDatabase.viewHandler(answers.viewOption)
+        input_handler.viewHandler(answers.viewOption);
         break;
       case 'Add / Modify Database':
       
@@ -90,5 +88,16 @@ const getUserInput = () => {
     console.error(err);
   })
 }
+
+
+
+
+
+if (config.app.firstTime) {
+  // run first time setup config utility then db sync
+}
+db.sync().then(() => {
+  getUserInput();
+});
 
 // getUserInput();

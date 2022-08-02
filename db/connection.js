@@ -2,22 +2,13 @@
 // made by fixedOtter 29.7.2022
 //
 
-const mysql = require('mysql2/promise');
-
 const { Sequelize } = require('sequelize');
+const config = require('../models/config');
 
-/* const dbPromise = mysql.createPool({
-  host: 'localhost',
-  database: 'employee_dir',
-  user: 'root',
-  password: 'GarfMode69420N$4'
-}).promise(); */
+const { host, database, user, pass, dialect, logging } = config.database;
 
-
-const sequelize = new Sequelize('employee_dir', 'root', 'GarfMode69420N$4', {
-  host: 'localhost',
-  dialect: 'mysql'
+module.exports = new Sequelize(database, user, pass, {
+  host: host,
+  dialect: dialect,
+  logging: logging
 });
-
-module.exports = sequelize;
-// module.exports = dbPromise;

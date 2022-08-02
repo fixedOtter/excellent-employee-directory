@@ -2,37 +2,30 @@
 // made by fixedOtter 29.7.2022
 //
 
-const { Sequelize, DataTypes } = require('sequelize');
-const sequelize = new Sequelize('sqlite::memory:');
+const Occupation = require('./Occupation.model');
+const { DataTypes, Model } = require('sequelize');
 
-const Employee = sequelize.define('Employee', {
-  first_name
-})
+class Employee extends Model {} // defining Employee as a model
 
+Employee.init({
+  firstName: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  lastName: {
+    type: DataTypes.STRING,
+  }
+}, {
+  sequelize: require('../db/connection'),
+  modelName: 'employee'
+});
 
+// Employee.belongsTo(Occupation);
+// Occupation.hasMany(Employee);
 
+Employee.hasOne(Employee, {as: 'Manager'});
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+module.exports = Employee;
 
 /* CREATE TABLE department(
   department_id INT AUTO_INCREMENT PRIMARY KEY,
