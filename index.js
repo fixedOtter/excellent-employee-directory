@@ -53,13 +53,13 @@ const whichToDo = [
 const getUserInput = () => {
   inquirer.prompt(whichToDo)
   .then((answers) => {
-    console.log(`questions ran, and here are answers:`);
-    console.log(JSON.stringify(answers, null, '  '));
+    // console.log(`questions ran, and here are answers:`);
+    // console.log(JSON.stringify(answers, null, '  '));
 
     db.authenticate()
     .then(res => {
-      console.log(`Connected`);
-      console.log(res);
+      // console.log(`Connected`);
+      // console.log(res);
     })
     .catch(err => {
       console.error(err);
@@ -73,14 +73,14 @@ const getUserInput = () => {
         input_handler.viewHandler(answers.viewOption);
         break;
       case 'Add / Modify Database':
-      
+        input_handler.modifyHandler(answers.modifyOption);
         break;
       case 'Delete from Database':
-        
+        input_handler.delHandler(answers.delOption);
         break;
-      
       default:
-        break;
+        console.log('Issue grabbing input. Please try again.');
+        process.exit();
     }
 
   })

@@ -17,8 +17,8 @@ Department.init({
   modelName: 'department'
 });
 
-// Department.hasMany(Occupation);
-// Occupation.belongsTo(Department);
+Department.hasMany(Occupation);
+Occupation.belongsTo(Department);
 
 module.exports = Department;
 

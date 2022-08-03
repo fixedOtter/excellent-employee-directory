@@ -25,8 +25,8 @@ Occupation.init({
 // Department.hasMany(Occupation);
 // Occupation.belongsTo(Department);
 
-// Occupation.hasMany(Employee);
-// Employee.belongsTo(Occupation);
+Occupation.hasMany(Employee);
+Employee.belongsTo(Occupation);
 
 module.exports = Occupation;
 
