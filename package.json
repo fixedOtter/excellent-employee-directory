@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "npm test",
-    "start": "node index.js"
+    "start": "node index.js",
+    "seed": "node db/seeding.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
   "homepage": "https://github.com/fixedOtter/excellent-employee-directory#readme",
   "dependencies": {
     "console.table": "^0.10.0",
+    "dotenv": "^16.0.1",
     "inquirer": "^8.2.4",
     "mysql2": "^2.3.3",
     "sequelize": "^6.21.3"

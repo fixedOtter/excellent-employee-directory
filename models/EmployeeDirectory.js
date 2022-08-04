@@ -6,7 +6,7 @@
 // const sequelize = new Sequelize('sqlite::memory:');
 
 
-const config = require('./config');
+const config = require('../config/config');
 const mysql = require('mysql2/promise');
 const { Sequelize } = require('sequelize');
 

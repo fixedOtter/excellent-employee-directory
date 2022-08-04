@@ -10,7 +10,7 @@ const cTable = require('console.table');
 
 /* local imports */
 const db = require('./db/connection.js');
-const config = require('./models/config');
+const config = require('./config/config');
 const input_handler = require('./lib/input-handler');
 
 /* declarations */
@@ -19,7 +19,7 @@ const whichToDo = [
     type: 'list',
     name: 'userMainChoice',
     message: 'What would you like to do?',
-    choices: ['View Database Data', 'Add / Modify Database', 'Delete from Database']
+    choices: ['View Database Data', 'Add / Modify Database', 'Delete from Database', 'Quit application']
   },
   {
     type: 'list',
@@ -50,43 +50,32 @@ const whichToDo = [
   },
 ]
 
-const getUserInput = () => {
-  inquirer.prompt(whichToDo)
-  .then((answers) => {
+const getUserInput = async() => {
+  const answers = await inquirer.prompt(whichToDo);
     // console.log(`questions ran, and here are answers:`);
     // console.log(JSON.stringify(answers, null, '  '));
 
-    db.authenticate()
-    .then(res => {
-      // console.log(`Connected`);
-      // console.log(res);
-    })
-    .catch(err => {
-      console.error(err);
-    })
+  await db.authenticate(); // should just make sure the database is synced before executing switch funct below
 
-
-
-    // do logic pertaining to each option
-    switch (answers.userMainChoice) {
-      case 'View Database Data':
-        input_handler.viewHandler(answers.viewOption);
-        break;
-      case 'Add / Modify Database':
-        input_handler.modifyHandler(answers.modifyOption);
-        break;
-      case 'Delete from Database':
-        input_handler.delHandler(answers.delOption);
-        break;
-      default:
-        console.log('Issue grabbing input. Please try again.');
-        process.exit();
-    }
-
-  })
-  .catch((err) => {
-    console.error(err);
-  })
+  // do logic pertaining to each option
+  switch (answers.userMainChoice) {
+    case 'View Database Data':
+      input_handler.viewHandler(answers.viewOption);
+      break;
+    case 'Add / Modify Database':
+      input_handler.modifyHandler(answers.modifyOption);
+      break;
+    case 'Delete from Database':
+      input_handler.delHandler(answers.delOption);
+      break;
+    case 'Quit application':
+      console.log('Thanks for playing!');
+      process.exit();
+    default:
+      console.log('Issue grabbing input. Please try again.');
+      process.exit();
+  }
+  getUserInput();
 }
 
 

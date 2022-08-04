@@ -3,40 +3,40 @@
 //
 
 const db = require('./connection');
-const Department = require('../models/Department.model');
-const Occupation = require('../models/Occupation.model');
-const Employee = require('../models/Employee.model');
+const { Department, Occupation, Employee } = require('../models');
 db.sync()
   .then(() => {
+    // Department.bulkCreate([
+    //   {
+    //     departmentName: 'Leaders'
+    //   },
+    //   {
+    //     departmentName: 'Business Development'
+    //   },
+    //   {
+    //     departmentName: 'Marketing'
+    //   },
+    //   {
+    //     departmentName: 'Engineers'
+    //   }
+    // ]).then(departments => {
+    //   console.table(departments);
+    // });
+    Department.findAll().then(departments => {
+      console.table(departments[0].dataValues);
+    });
     
+    
+    // Department.findByPk(1, {include: Occupation}).then(dep => {
+    //   dep.createOccupation({
+    //     title: 'CEO',
+    //     salary: '69420'
+    //   });
+    // });
   });
 
 
 
-
-
-
-
-
-
-
-
-// Department.bulkCreate([
-//   {
-//     departmentName: 'Leaders'
-//   },
-//   {
-//     departmentName: 'Business Development'
-//   },
-//   {
-//     departmentName: 'Marketing'
-//   },
-//   {
-//     departmentName: 'Engineers'
-//   }
-// ]).then(departments => {
-//   console.table(departments);
-// });
 
 
 // db.sync()

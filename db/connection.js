@@ -3,7 +3,7 @@
 //
 
 const { Sequelize } = require('sequelize');
-const config = require('../models/config');
+const config = require('../config/config');
 
 const { host, database, user, pass, dialect, logging } = config.database;
 
