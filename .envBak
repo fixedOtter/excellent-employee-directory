@@ -1,0 +1,5 @@
+HOST="localhost"
+DB="employee_data"
+SQLUSER="root"
+SQLPASS="GarfMode69420N$4"
+LOG="true"

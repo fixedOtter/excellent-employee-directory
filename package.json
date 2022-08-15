@@ -5,8 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "npm test",
-    "start": "node index.js",
-    "seed": "node db/seeding.js"
+    "init": "node db/init.js",
+    "seed": "node db/seeding.js",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
