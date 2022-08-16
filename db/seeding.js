@@ -87,6 +87,14 @@ db.sync()
       salary: '1234'
     });
     
+    /**
+     * tying two tables to eachother
+     * grab obj to grab
+     * objToGrab.addChild(childObjToTie)
+     * 
+     */
+
+
     let CEO, CFO, HRDir, AccDir, SalesP, CreativeDir, UIDes, threeDDes, ProdEng, BackEng, FrontEng;
 
     CEO = await Occupation.findOne({ where: { title: 'CEO' }});

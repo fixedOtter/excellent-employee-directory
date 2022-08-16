@@ -10,7 +10,6 @@ const cTable = require('console.table');
 
 /* local imports */
 const db = require('./db/connection.js');
-const config = require('./config/config');
 const input_handler = require('./lib/input-handler');
 
 /* declarations */
@@ -81,10 +80,6 @@ const getUserInput = async() => {
 
 
 
-
-if (config.app.firstTime) {
-  // run first time setup config utility then db sync
-}
 db.sync().then(() => {
   getUserInput();
 });
