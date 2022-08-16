@@ -31,6 +31,7 @@ db.sync()
     Creative = await Department.findByPk(3);
     Engineers = await Department.findByPk(4);
 
+    // leaders seeding
     await Leaders.createOccupation({
       title: 'CEO',
       salary: '12345678'
@@ -44,6 +45,7 @@ db.sync()
       salary: '12345678'
     });
 
+    // dev seeding
     await BusinessDev.createOccupation({
       title: 'Accounting Director',
       salary: '1234567'
@@ -57,6 +59,7 @@ db.sync()
       salary: '1234567'
     });
 
+    // creative seeding
     await Creative.createOccupation({
       title: 'Creative Director',
       salary: '123456'
@@ -70,6 +73,7 @@ db.sync()
       salary: '123456'
     });
 
+    // engineers seeding
     await Engineers.createOccupation({
       title: 'Production Engineer',
       salary: '1234'
@@ -97,7 +101,55 @@ db.sync()
     BackEng = await Occupation.findOne({ where: { title: 'Backend Engineer' }});
     FrontEng = await Occupation.findOne({ where: { title: 'Frontend Engineer' }});
 
-    // TODO: setup the employee seeding
+    await CEO.createEmployee({
+      firstName: 'bauhb',
+      lastName: 'roberts'
+    });
+    await CFO.createEmployee({
+      firstName: 'jawnathin',
+      lastName: 'floote'
+    });
+    await HRDir.createEmployee({
+      firstName: 'emily',
+      lastName: 'turquoise'
+    });
+    await AccDir.createEmployee({
+      firstName: 'stivin',
+      lastName: 'medly'
+    });
+    await SalesP.createEmployee({
+      firstName: 'bell',
+      lastName: 'tessdy'
+    });
+    await SalesP.createEmployee({
+      firstName: 'tim',
+      lastName: 'tam',
+      managerId: 3 // WERK! TIE TO IDS??
+    });
+    await CreativeDir.createEmployee({
+      firstName: 'boilly',
+      lastName: 'letson'
+    });
+    await UIDes.createEmployee({
+      firstName: 'mickail',
+      lastName: 'riste'
+    });
+    await threeDDes.createEmployee({
+      firstName: 'shika',
+      lastName: 'shigeru'
+    });
+    await BackEng.createEmployee({
+      firstName: 'jauwhn',
+      lastName: 'sealson'
+    });
+    await FrontEng.createEmployee({
+      firstName: 'scitty',
+      lastName: 'laTome'
+    });
+    await FrontEng.createEmployee({
+      firstName: 'saul',
+      lastName: 'hajik'
+    });
 
     
     
