@@ -16,7 +16,8 @@ Occupation.init({
   }
 }, {
   sequelize: require('../db/connection'),
-  modelName: 'occupation'
+  modelName: 'occupation',
+  timestamps: false
 });
 
 module.exports = Occupation;

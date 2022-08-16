@@ -10,7 +10,7 @@ const cTable = require('console.table');
 
 /* local imports */
 const db = require('./db/connection.js');
-const input_handler = require('./lib/input-handler');
+const input_handler = require('./controllers/input-handler');
 
 /* declarations */
 const whichToDo = [
@@ -74,7 +74,7 @@ const getUserInput = async() => {
       console.log('Issue grabbing input. Please try again.');
       process.exit();
   }
-  getUserInput();
+  // getUserInput();
 }
 
 

@@ -13,7 +13,8 @@ Department.init({
   }
 }, {
   sequelize: require('../db/connection'),
-  modelName: 'department'
+  modelName: 'department',
+  timestamps: false
 });
 
 module.exports = Department;

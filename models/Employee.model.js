@@ -16,7 +16,8 @@ Employee.init({
   }
 }, {
   sequelize: require('../db/connection'),
-  modelName: 'employee'
+  modelName: 'employee',
+  timestamps: false
 });
 
 
