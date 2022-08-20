@@ -2,6 +2,7 @@
 // made by fixedOtter on 1.8.2022
 //
 
+const sequelize = require('sequelize');
 const db = require('../db/connection');
 const { Department, Occupation, Employee } = require('../models');
 
@@ -23,6 +24,10 @@ module.exports = {
     let data;
     switch (userViewInput) {
       case 'View All Employees':
+        // const allEmployees = await db.query(
+        //   "SELECT `employee`.`id`, `employee`.`firstName`, `employee`.`lastName`, `employee`.`occupationId`, `employee`.`managerId`, `occupation`.`id` AS `occupation.id`, `occupation`.`title` AS `occupation.title`, `occupation`.`salary` AS `occupation.salary`, `occupation`.`departmentId` AS `occupation.departmentId`, `manager`.`id` AS `manager.id`, `manager`.`firstName` AS `manager.firstName`, `manager`.`lastName` AS `manager.lastName`, `manager`.`occupationId` AS `manager.occupationId`, `manager`.`managerId` AS `manager.managerId` FROM `employees` AS `employee` LEFT OUTER JOIN `occupations` AS `occupation` ON `employee`.`occupationId` = `occupation`.`id` LEFT OUTER JOIN `employees` AS `manager` ON `employee`.`id` = `manager`.`managerId` ORDER BY `employee`.`firstName` ASC;"
+        // );
+        // console.table(allEmployees[0]);
         const allEmployees = await Employee.findAll({
           order: [
             ['firstName', 'ASC'],
@@ -30,7 +35,7 @@ module.exports = {
           include: [
             {
               model: Occupation,
-              as: 'occupation'
+              as: 'role'
             },
             {
               model: Employee,
@@ -38,7 +43,8 @@ module.exports = {
             }
           ]
         });
-        console.table(await sequelizeTable(allEmployees)); // FIXME: beautify with console.table
+        console.log(allEmployees);
+        // console.table(await sequelizeTable(allEmployees)); // FIXME: beautify with console.table
         break;
       case 'View Employees by Manager Name':
         console.table(await Employee.findAll({

@@ -10,12 +10,12 @@ const Employee = require('./Employee.model');
 /* defining model relationships (aww) */
 // department has many occupations
 Department.hasMany(Occupation);
-Occupation.belongsTo(Department);
+Occupation.belongsTo(Department, {foreignKey: 'departmentId', as: 'department'});
 // occupation has many employees
 Occupation.hasMany(Employee);
-Employee.belongsTo(Occupation);
+Employee.belongsTo(Occupation, {foreignKey: 'occupationId', as: 'role'});
 // employee has one manager
-Employee.hasOne(Employee, {as: 'manager'});
+Employee.hasOne(Employee, {foreignKey: 'managerId', as: 'manager'});
 
 
 /* exporting the now related goods */
