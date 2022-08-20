@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS department(
   name VARCHAR(30) NOT NULL
 );
 
--- creating occupation child / parent table
+-- creating occupation table
 CREATE TABLE IF NOT EXISTS occupation(
   occupation_id INT AUTO_INCREMENT PRIMARY KEY,
   title VARCHAR(30) NOT NULL,

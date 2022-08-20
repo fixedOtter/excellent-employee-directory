@@ -1,7 +1,4 @@
 node_modules
 nodemon.json
 .env
-<<<<<<< HEAD
-=======
-db/clip.txt
->>>>>>> sequelize-testing
+

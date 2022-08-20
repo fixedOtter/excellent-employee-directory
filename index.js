@@ -53,10 +53,6 @@ const whichToDo = [
 
 const getUserInput = async() => {
   const answers = await inquirer.prompt(whichToDo);
-    // console.log(`questions ran, and here are answers:`);
-    // console.log(JSON.stringify(answers, null, '  '));
-
-  await db.authenticate(); // should just make sure the database is synced before executing switch funct below
 
   // do logic pertaining to each option
   switch (answers.userMainChoice) {
