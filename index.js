@@ -4,16 +4,10 @@
 
 /* imported goods */
 const inquirer = require('inquirer');
-const fs = require('fs');
-const path = require('path');
-const cTable = require('console.table');
-
 /* local imports */
-const db = require('./db/connection.js');
-const input_handler = require('./controllers/input-handler');
+const queryHandler = require('./controllers/queryHandler');
 
 /* declarations */
-let tableData;
 const whichToDo = [
   {
     type: 'list',
@@ -57,22 +51,22 @@ const getUserInput = async() => {
   // do logic pertaining to each option
   switch (answers.userMainChoice) {
     case 'View Database Data':
-      await input_handler.viewHandler(answers.viewOption);
+      await queryHandler.viewHandler(answers.viewOption);
       break;
     case 'Add / Modify Database':
-      await input_handler.modifyHandler(answers.modifyOption);
+      await queryHandler.modifyHandler(answers.modifyOption);
       break;
     case 'Delete from Database':
-      await input_handler.delHandler(answers.delOption);
+      await queryHandler.delHandler(answers.delOption);
       break;
     case 'Quit application':
       console.log('Thanks for playing!');
       process.exit();
     default:
-      console.log('Issue grabbing input. Please try again.');
+      console.log('Error grabbing input. Please try again.');
       process.exit();
   }
-  // getUserInput();
+  getUserInput();
 }
 
 
